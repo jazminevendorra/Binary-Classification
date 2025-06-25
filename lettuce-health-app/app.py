@@ -18,10 +18,12 @@ st.markdown(
 # Load model
 model = tf.keras.models.load_model("healthy_vs_non_healthy_classifier.keras")
 
-# Navigation
+# Sidebar logo
+st.sidebar.image("AgriVision-removebg-preview.png", use_container_width=True)
+
 st.sidebar.title("Navigation")
-pages = ["Landing", "Classifier", "FAQ", "Example Images"]
-page = st.sidebar.selectbox("Choose a page", pages)
+pages = ["**Classifier**", "**FAQ**"]
+page = st.sidebar.radio("**Go to**", pages)
 
 # Landing page
 if page == "Landing":
@@ -32,13 +34,13 @@ if page == "Landing":
         st.markdown("<div style='font-size:180px;'>🥬</div>", unsafe_allow_html=True)
 
 # Classifier page
-elif page == "Classifier":
-    st.title("🧠 Classifier")
-    st.markdown("Upload an image of a lettuce leaf to check if it's **Healthy** or **Non-Healthy**.")
+if page == "**Classifier**":
+    st.title("🌱 Classifier")
+    st.markdown("Upload an image of a crop leaf to check if it's **Healthy** or **Non-Healthy**.")
     uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
     if uploaded_file is not None:
         image = Image.open(uploaded_file).convert("RGB")
-        st.image(image, caption='Uploaded Image', use_column_width=True)
+        st.image(image, caption='Uploaded Image', use_container_width=True)
         image = image.resize((150, 150))
         image_array = np.expand_dims(np.array(image) / 255.0, axis=0)
         prediction = model.predict(image_array)
@@ -48,23 +50,16 @@ elif page == "Classifier":
         st.markdown(f"### 📊 Confidence: **{confidence * 100:.2f}%**")
     else:
         st.markdown("### **Please upload an image to classify.**")
-        image = image.resize((150, 150))
-        image_array = np.expand_dims(np.array(image) / 255.0, axis=0)
-        prediction = model.predict(image_array)
-        label = "Non-Healthy" if prediction[0][0] > 0.5 else "Healthy"
-        confidence = prediction[0][0] if label == "Non-Healthy" else 1 - prediction[0][0]
-        st.markdown(f"### 🧠 Prediction: **{label}**")
-        st.markdown(f"### 📊 Confidence: **{confidence * 100:.2f}%**")
 
 # FAQ page
-elif page == "FAQ":
-    st.title("🤔 FAQ")
-    st.markdown("### **Q: What is this app for?**")
-    st.markdown("A: This app is for classifying lettuce leaves as healthy or non-healthy.")
-    st.markdown("### **Q: How does it work?**")
-    st.markdown("A: This app uses a machine learning model to classify images of lettuce leaves.")
-    st.markdown("### **Q: What kind of images can I upload?**")
-    st.markdown("A: You can upload images of lettuce leaves in JPEG or PNG format.")
+elif page == "**FAQ**":
+    st.title("🔍 Your Questions, Answered!\n")
+    st.subheader("**Q: What does this app do?**")
+    st.markdown("A: It classifies lettuce leaves as healthy or non-healthy using a trained deep learning model.")
+    st.subheader("**Q: How do I use it?**")
+    st.markdown("A: Go to the Classifier page and upload a lettuce leaf image.")
+    st.subheader("**Q: What types of images are supported?**")
+    st.markdown("A: JPG, JPEG, and PNG images.")
 
 # Example Images page
 elif page == "Example Images":
