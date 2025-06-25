@@ -1,2 +1,64 @@
+# Python
 __pycache__/
+*.py[cod]
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+
+# Jupyter Notebooks
+.ipynb_checkpoints
+
+# Virtual environments
+venv/
+ENV/
+env/
+
+# Data and model files
+*.keras
+*.h5
+*.hdf5
+*.ckpt
+*.pth
+*.pt
+*.tflite
+*.pb
+*.onnx
+*.csv
+*.tsv
+*.npz
+*.npy
+*.db
+*.sqlite3
+*.log
+*.bak
+*.zip
+*.tar.gz
+*.tar
+*.rar
+*.7z
+*.gz
+*.bz2
+*.xz
+
+# OS files
 .DS_Store
+Thumbs.db
+
+# Environment variables and secrets
+.env
+.env.*
+secrets.*
+
+# Ignore large datasets
+Lettuce_disease_datasets/
+train/
+validation/
+test/
+
+# Ignore example images if not needed
+example_images/
+
+# Ignore streamlit deployment prompt
+windsurf_streamlit_deploy_prompt.md

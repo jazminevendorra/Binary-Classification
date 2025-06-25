@@ -1,4 +1,8 @@
+# Main requirements for training, inference, and Streamlit app
 streamlit
 tensorflow
 Pillow
 numpy
+matplotlib
+seaborn
+scikit-learn

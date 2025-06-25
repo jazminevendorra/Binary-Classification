@@ -1,0 +1,4 @@
+__pycache__/
+.DS_Store
+*.keras
+healthy_vs_non_healthy_classifier.keras
